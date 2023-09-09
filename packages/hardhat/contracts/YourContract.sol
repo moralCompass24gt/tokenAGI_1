@@ -1,87 +1,45 @@
-//SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0 <0.9.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
 
-// Useful for debugging. Remove when deploying to a live network.
-import "hardhat/console.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
-// Use openzeppelin to inherit battle-tested implementations (ERC20, ERC721, etc)
-// import "@openzeppelin/contracts/access/Ownable.sol";
 
-/**
- * A smart contract that allows changing a state variable of the contract and tracking the changes
- * It also allows the owner to withdraw the Ether in the contract
- * @author BuidlGuidl
- */
-contract YourContract {
-	// State Variables
-	address public immutable owner;
-	string public greeting = "Building Unstoppable Apps!!!";
-	bool public premium = false;
-	uint256 public totalCounter = 0;
-	mapping(address => uint) public userGreetingCounter;
+contract YourContract is ERC721 {
+    using Counters for Counters.Counter;
 
-	// Events: a way to emit log statements from smart contract that can be listened to by external parties
-	event GreetingChange(
-		address indexed greetingSetter,
-		string newGreeting,
-		bool premium,
-		uint256 value
-	);
+    Counters.Counter private _tokenIdCounter;
+    //设置NFT最大数量
+    uint256 MAX_SUPPLY = 1000;
 
-	// Constructor: Called once on contract deployment
-	// Check packages/hardhat/deploy/00_deploy_your_contract.ts
-	constructor(address _owner) {
-		owner = _owner;
-	}
+    //记录每个nftId对应的地址
+    mapping (uint256 => address) private tokenId2Add;
 
-	// Modifier: used to define a set of rules that must be met before or after a function is executed
-	// Check the withdraw() function
-	modifier isOwner() {
-		// msg.sender: predefined variable that represents address of the account that called the current function
-		require(msg.sender == owner, "Not the Owner");
-		_;
-	}
+    constructor() ERC721("TokenagiAccessGated", "TAG") {}
 
-	/**
-	 * Function that allows anyone to change the state variable "greeting" of the contract and increase the counters
-	 *
-	 * @param _newGreeting (string memory) - new greeting to save on the contract
-	 */
-	function setGreeting(string memory _newGreeting) public payable {
-		// Print data to the hardhat chain console. Remove when deploying to a live network.
-		console.log(
-			"Setting new greeting '%s' from %s",
-			_newGreeting,
-			msg.sender
-		);
+    function safeMint(address to) public {
+        uint256 tokenId = _tokenIdCounter.current();
+        require(tokenId <= MAX_SUPPLY,"I'm sorry we reach the cap. Pls contact us to get access!!");
+        _tokenIdCounter.increment();
+        _safeMint(to, tokenId);
+        tokenId2Add[tokenId]=to;
+    }
 
-		// Change state variables
-		greeting = _newGreeting;
-		totalCounter += 1;
-		userGreetingCounter[msg.sender] += 1;
+    function isExist(address _add) public view returns(bool){
 
-		// msg.value: built-in global variable that represents the amount of ether sent with the transaction
-		if (msg.value > 0) {
-			premium = true;
-		} else {
-			premium = false;
-		}
+        //_add不能是空地址
+        require(_add != address(0), "NFT owner can not be address(0)");
 
-		// emit: keyword used to trigger an event
-		emit GreetingChange(msg.sender, _newGreeting, msg.value > 0, 0);
-	}
+        uint256 curId = _tokenIdCounter.current();
 
-	/**
-	 * Function that allows the owner to withdraw all the Ether in the contract
-	 * The function can only be called by the owner of the contract as defined by the isOwner modifier
-	 */
-	function withdraw() public isOwner {
-		(bool success, ) = owner.call{ value: address(this).balance }("");
-		require(success, "Failed to send Ether");
-	}
+        //遍历数组查找该地址是否持有nft
+        for(uint i=0;i<curId;i++){
+            if(tokenId2Add[i]==_add)
+            return true;
+        }
 
-	/**
-	 * Function that allows the contract to receive ETH
-	 */
-	receive() external payable {}
+        return false;
+
+    }
+
 }

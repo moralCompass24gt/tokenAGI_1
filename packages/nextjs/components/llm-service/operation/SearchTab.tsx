@@ -1,0 +1,67 @@
+import { useEffect, useState } from "react";
+import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { ArrowSmallRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useAccount } from "wagmi";
+import { types } from "util";
+import { fetchData } from "~~/pages/llmservice/data";
+
+const SearchTab = function(){
+
+    const [newSearch,setNewSearch]=useState("");
+
+    //获取当前连接用户的连接状态与地址
+    const {address,isConnecting,isDisconnected}=useAccount();
+    // console.log(address)
+    //NFT token gated access
+    const [available,setAvailable]=useState<boolean|undefined>(false);
+
+    const isAvailable=useScaffoldContractRead({
+      contractName:"YourContract",
+      functionName:"isExist",
+      args:[address],
+    });
+    // console.log(isAvailable.data);
+    //将用户输入内容传输给后端
+    useEffect(()=>{
+      // console.log(isAvailable.data);
+      setAvailable(isAvailable.data);
+      // console.log(available);
+    })
+    //将search的内容传给blockagi
+    const writeAsync=()=>{
+      fetchData()
+    }
+    return(
+        <div className="mt-1 mb-4 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
+        <input
+          type="text"
+          placeholder={available?`Write your objective here`:`Pls mint nft to get access to this service!`}
+          className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
+          onChange={e => setNewSearch(e.target.value)}
+          disabled={!available}
+        />
+        <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
+          <div className="flex rounded-full border-2 border-primary p-1">
+            <button
+              className="btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest"
+              onClick={() => writeAsync()}
+              disabled={!available}
+            >
+              {/* {isLoading ? (
+                <span className="loading loading-spinner loading-sm"></span>
+              ) : (
+                <>
+                  Send <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
+                </> 
+              )}*/}
+              <>
+                  Send <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
+                </> 
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+};
+
+export default SearchTab;

@@ -88,32 +88,67 @@ module.exports = {
     ],
   },
   theme: {
-    // Extend Tailwind classes (e.g. font-bai-jamjuree, animate-grow)
+    // // Extend Tailwind classes (e.g. font-bai-jamjuree, animate-grow)
+    // extend: {
+    //   fontFamily: {
+    //     "bai-jamjuree": ["Bai Jamjuree", "sans-serif"],
+    //   },
+    //   boxShadow: {
+    //     center: "0 0 12px -2px rgb(0 0 0 / 0.05)",
+    //   },
+    //   keyframes: {
+    //     grow: {
+    //       "0%": {
+    //         width: "0%",
+    //       },
+    //       "100%": {
+    //         width: "100%",
+    //       },
+    //     },
+    //     zoom: {
+    //       "0%, 100%": { transform: "scale(1, 1)" },
+    //       "50%": { transform: "scale(1.1, 1.1)" },
+    //     },
+    //   },
+    //   animation: {
+    //     grow: "grow 5s linear infinite",
+    //     "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+    //     zoom: "zoom 1s ease infinite",
+    //   },
+    // },
+    fontFamily: {
+      sans: ["var(--font-sans)", "sans-serif"],
+      code: ["var(--font-code)", "monospace"],
+    },
+    colors: {
+      transparent: "transparent",
+      "ac-1": "#833FFF",
+      "ac-2": "#0A9F19",
+      "ac-3": "#767676",
+      "ac-4": "#D80B30",
+      "fg-1": "#EDE3FF",
+      "fg-2": "#D9FFDD",
+      "fg-3": "#EBEBEB",
+      "fg-4": "#FFD9E0",
+      "bd-1": "#E3E3E3",
+      "ft-1": "#000000",
+      "ft-2": "#A0A0A0",
+      "bg-1": "#FFFFFF",
+      "bg-2": "#F7F7F7",
+      "bg-3": "#F5F5F5",
+      "bg-lt": "#FAFAFA",
+    },
     extend: {
-      fontFamily: {
-        "bai-jamjuree": ["Bai Jamjuree", "sans-serif"],
+      backgroundImage: {
+        "gr-1": "linear-gradient(#8A4EF4, #5100E3)",
       },
       boxShadow: {
-        center: "0 0 12px -2px rgb(0 0 0 / 0.05)",
-      },
-      keyframes: {
-        grow: {
-          "0%": {
-            width: "0%",
-          },
-          "100%": {
-            width: "100%",
-          },
-        },
-        zoom: {
-          "0%, 100%": { transform: "scale(1, 1)" },
-          "50%": { transform: "scale(1.1, 1.1)" },
-        },
+        article: "inset 3px 3px 15px rgba(0, 0, 0, 0.03)",
+        section: "inset 1px 1px 8px rgba(0, 0, 0, 0.05)",
       },
       animation: {
-        grow: "grow 5s linear infinite",
-        "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        zoom: "zoom 1s ease infinite",
+        "bounce-fast": "bounce 300ms ease-in-out infinite",
+        "spin-fast": "spin 300ms ease-in-out infinite",
       },
     },
   },

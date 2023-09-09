@@ -14,8 +14,17 @@ import { useGlobalState } from "~~/services/store/store";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
 import { appChains } from "~~/services/web3/wagmiConnectors";
 import "~~/styles/globals.css";
+import type { ReactElement,ReactNode } from "react";
+import { NextPage } from "next";
 
-const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+};
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+};
+
+const ScaffoldEthApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const price = useNativeCurrencyPrice();
   const setNativeCurrencyPrice = useGlobalState(state => state.setNativeCurrencyPrice);
   // This variable is required for initial client side rendering of correct theme for RainbowKit
@@ -31,7 +40,9 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     setIsDarkTheme(isDarkMode);
   }, [isDarkMode]);
-
+//这个layout一旦打开会报hydration error，不知如何修复
+  // const getLayout=Component.getLayout ?? ((page) => page);
+//打开的话这里要在括号前添加getLayout
   return (
     <WagmiConfig config={wagmiConfig}>
       <NextNProgress />
