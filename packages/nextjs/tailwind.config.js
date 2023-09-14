@@ -137,6 +137,7 @@ module.exports = {
       "bg-2": "#F7F7F7",
       "bg-3": "#F5F5F5",
       "bg-lt": "#FAFAFA",
+      "bg-tm": "#2e99db",
     },
     extend: {
       backgroundImage: {

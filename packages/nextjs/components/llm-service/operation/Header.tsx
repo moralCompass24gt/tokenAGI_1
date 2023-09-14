@@ -11,17 +11,17 @@ const Header = () => {
           <div className="inline-flex">
             <Image
               alt="BlockAGI Logo"
-              src="/blockagi.svg"
-              width={44}
-              height={44}
+              src="/tokenmind.svg"
+              width={80}
+              height={80}
             />
           </div>
           <div className="ml-4 tracking-wide">
-            <div className="font-bold text-[22px] leading-7 bg-clip-text text-transparent bg-gr-1">
-              BlockAGI
+            <div className="font-bold text-[22px] leading-7 bg-clip-text text-transparent bg-bg-tm">
+              TokenMind
             </div>
             <div className="font-bold text-[18px] text-ft-1">
-              Your Self-Hosted, Hackable Research Agent
+              Turning AI into Trust 
             </div>
           </div>
         </div>

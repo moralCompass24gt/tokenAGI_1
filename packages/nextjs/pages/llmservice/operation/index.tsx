@@ -23,15 +23,15 @@ const Operation = () => {
             {/* Footer */}
             <div className="flex items-center mt-6 font-bold text-ft-2">
                 <div className="flex space-x-12">
-                    <a href="https://github.com" target="_blank">
+                    <a href="https://github.com/moralCompass24gt/tokenAGI_1" target="_blank">
                         Github
                     </a>
-                    <a href="https://github.com" target="_blank">
-                        Documentation
+                    <a href="https://www.tokenmind.org/" target="_blank">
+                        Website & Documentations
                     </a>
                 </div>
 
-                <div className="flex items-center ml-auto font-semibold text-ft-1 text-[15px]">
+                {/* <div className="flex items-center ml-auto font-semibold text-ft-1 text-[15px]">
                     Brought to you by{" "}
                     <a
                         className="inline-flex ml-2 hover:text-ac-2 hover:decoration-ac-2 group"
@@ -48,7 +48,7 @@ const Operation = () => {
                         </div>
                         Blockpipe
                     </a>
-                </div>
+                </div> */}
             </div>
         </section>
     );

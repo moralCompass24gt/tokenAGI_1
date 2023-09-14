@@ -51,7 +51,7 @@ def run_blockagi(
     inputs = {
         "objectives": objectives,
         "findings": Findings(
-            narrative="Nothing",
+            narrative="Magic will happen here.",
             remark="",
             generated_objectives=[],
         ),
