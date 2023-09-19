@@ -20,6 +20,8 @@ contract YourContract is ERC721 {
     function safeMint(address to) public {
         uint256 tokenId = _tokenIdCounter.current();
         require(tokenId <= MAX_SUPPLY,"I'm sorry we reach the cap. Pls contact us to get access!!");
+        //还要检验该地址是否已经mint了nft
+        require(!isExist(to),"This address has minted our nft before.");
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
         tokenId2Add[tokenId]=to;

@@ -27,11 +27,5 @@ const LLMservice: NextPageWithLayout = () => {
         </DataContext.Provider>
     );
 };
-// LLMservice.getLayout = function getLayout(page: ReactElement) {
-//     return(
-//         <RootLayout>
-//             {page}
-//         </RootLayout>
-//     )
-// };
+
 export default LLMservice;

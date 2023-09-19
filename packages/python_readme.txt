@@ -1,4 +1,5 @@
 关于在centos系统运行TokenMind后端文件的说明
+开发环境：anaconda vscode | python 3.11.4 
 
 1.将压缩包解压
 
