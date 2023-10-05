@@ -11,16 +11,17 @@ type MetaHeaderProps = {
 
 // Images must have an absolute path to work properly on Twitter.
 // We try to get it dynamically from Vercel, but we default to relative path.
-const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/` : "/";
+// const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/` : "/";
 
 export const MetaHeader = ({
-  title = "Scaffold-ETH 2 App",
-  description = "Built with 🏗 Scaffold-ETH 2",
-  image = "thumbnail.jpg",
+  title = "TokenMind",
+  description = "Toward Trusted Digital Economy",
+  image = "tokenmind.svg",
   twitterCard = "summary_large_image",
   children,
 }: MetaHeaderProps) => {
-  const imageUrl = baseUrl + image;
+  const imageUrl = `packages/nextjs/public/` + image;
+  
 
   return (
     <Head>

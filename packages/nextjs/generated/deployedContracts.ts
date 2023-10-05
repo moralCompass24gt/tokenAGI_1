@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         YourContract: {
-          address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+          address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
           abi: [
             {
               inputs: [],
@@ -385,7 +385,7 @@ const contracts = {
       name: "sepolia",
       contracts: {
         YourContract: {
-          address: "0x387B3cBB7c56cdE2E8BAcaa7137754dB465268CA",
+          address: "0x33D8183C1DD3bA2f4Cd5765f128dF91304Bc5468",
           abi: [
             {
               inputs: [],

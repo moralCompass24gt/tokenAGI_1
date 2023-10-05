@@ -1,5 +1,5 @@
 import {memo,useState,useEffect} from "react";
-import { AgentLog } from "~~/pages/llmservice/type";
+import { AgentLog } from "~~/components/llm-service/type";
 import delay from "delay";
 
 function formatTime(date: Date) {

@@ -1,7 +1,7 @@
 import json
 import os
 from langchain.tools.base import BaseTool
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from typing import Optional, Type
 
 from blockagi.schema import BaseResourcePool

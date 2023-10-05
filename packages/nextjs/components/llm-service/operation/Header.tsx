@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DataContext } from "~~/pages/llmservice/data";
+import { DataContext } from "~~/components/llm-service/data";
 import Image from "next/image";
 
 const Header = () => {

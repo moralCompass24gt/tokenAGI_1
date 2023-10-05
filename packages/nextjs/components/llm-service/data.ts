@@ -1,14 +1,5 @@
 import { createContext } from "react";
-import {
-  AgentState,
-  AgentStatus,
-  Objective,
-  Findings,
-  AgentLog,
-  LLMLog,
-  Narrative,
-  Resource,
-} from "./type";
+import { AgentLog, AgentState, AgentStatus, Findings, LLMLog, Narrative, Objective, Resource } from "./type";
 
 export type BlockAGIDataType = {
   start_time: Date;
@@ -52,10 +43,9 @@ function stripCodeBlock(markdown: string) {
   const match = regex.exec(markdown);
   return match ? match[1].trim() : markdown.trim();
 }
-
-export const fetchData = async (): Promise<BlockAGIDataType | null> => {
+export const fetchData = async (address: string | undefined): Promise<BlockAGIDataType | null> => {
   try {
-    const response = await fetch("http://localhost:8000/api/state");
+    const response = await fetch(`http://localhost:8000/api/state/${address}`);
     const data: AgentState = await response.json();
 
     return {

@@ -1,5 +1,5 @@
 import { useState,useEffect,useContext,useCallback } from "react";
-import { DataContext } from "../data";
+import { DataContext } from "../../../components/llm-service/data";
 import copy from "copy-to-clipboard";
 import Image from "next/image";
 import NarrativeMarkdown from "~~/components/llm-service/narrative/NarrativeMarkdown";

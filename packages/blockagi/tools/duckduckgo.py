@@ -3,7 +3,7 @@ from typing import Optional, Type
 
 from langchain.tools import DuckDuckGoSearchRun
 from langchain.tools import Tool
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from langchain.tools.base import BaseTool
 import json
 

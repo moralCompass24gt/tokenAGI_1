@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect, useRef } from "react";
-import { DataContext } from "~~/pages/llmservice/data";
+import { DataContext } from "~~/components/llm-service/data";
 import Collapsible from "./Collapsible";
 
 function LLMLogTab() {

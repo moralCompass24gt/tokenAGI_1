@@ -1,5 +1,5 @@
 from playwright.sync_api import sync_playwright
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from html2text import HTML2Text
 from blockagi.schema import BaseResourcePool
 

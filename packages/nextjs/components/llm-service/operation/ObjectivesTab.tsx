@@ -1,4 +1,4 @@
-import { DataContext } from "~~/pages/llmservice/data";
+import { DataContext } from "~~/components/llm-service/data";
 import {useContext} from "react";
 import Collapsible from "./Collapsible";
 
